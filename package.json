@@ -1,0 +1,25 @@
+{
+  "name": "job-hunter-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha --timeout 10000",
+    "start": "nodemon server.js"
+  },
+  "author": "Daniel Sung",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.8",
+    "mongoose": "^5.3.8"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.5"
+  }
+}
