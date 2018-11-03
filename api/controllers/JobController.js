@@ -54,7 +54,7 @@ exports.deleteJob = (req, res) => {
         if (err)
             res.send(err);
         
-        res.send(`Job Id ${req.params.jobId} succesfully deleted`);
+        res.send(`Job Id ${req.params.jobId} succesfully deleted`)
     });
 };
 

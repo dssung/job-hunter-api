@@ -6,8 +6,6 @@ const config = require('config');
 
 //db options
 let options = { 
-    server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 }}, 
-    replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 }},
     useNewUrlParser: true, 
     useFindAndModify: false 
   }; 
@@ -21,9 +19,18 @@ const port = process.env.PORT || 8000;
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DBHost, options);
 
+if (config.util.getEnv('NODE_ENV') === 'test') {
+   console.log('In test environment');
+} else {
+    console.log('In dev env');
+}
+
 //body-parser
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+//app.use(bodyParser.text());
+//app.use(bodyParser.json({ type: 'application/json'}));
+
 
 //Load Routers
 app.use(jobRouter);
