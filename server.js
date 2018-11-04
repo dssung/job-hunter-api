@@ -3,18 +3,21 @@ const mongoose = require('mongoose');
 const Job = require('./api/models/JobModel');
 const bodyParser = require('body-parser');
 const config = require('config');
+const cors = require('cors');
 
 //db options
 let options = { 
     useNewUrlParser: true, 
     useFindAndModify: false 
-  }; 
+  };
 
 //Routers
 let jobRouter = require('./api/routers/JobRouter');
 
 const app = express();
 const port = process.env.PORT || 8000;
+
+app.use(cors());
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DBHost, options);
