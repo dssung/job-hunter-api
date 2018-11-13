@@ -3,6 +3,24 @@ let Schema = mongoose.Schema;
 
 //Schema maps to a MongoDB collection
 //Defines shape of documents within that collection
+
+let activitySchema = new Schema({
+    activity_type: {
+        type: String,
+        enum: ['EMAIL', 'PHONE_CALL', 'PHONE_INTERVIEW', 'ONSITE_INTERVIEW']
+    },
+
+    date: {
+        type: Date,
+        default: Date.now()
+    },
+
+    notes: {
+        type: String,
+        default: '',
+    }
+});
+
 let JobSchema = new Schema({
     company: {
         type: String,
@@ -16,13 +34,35 @@ let JobSchema = new Schema({
         type: String,
         required: 'Enter City of position'
     },
+    
+    applied_date: {
+        type: Date,
+        default: Date.now()
+    },
+
+    skills: {
+        type: [String]
+    },
+
+    notes: {
+        type: String,
+        default: ''
+    },
+
+    link: {
+        type: String
+    },
+
     created_date: {
         type: Date,
         default: Date.now()
     },
+
+    activity_log: [activitySchema],
+
     status: {
         type: String,
-        enum: ['APPLIED', 'ONGOING', 'REJECTED'],
+        enum: ['INTERESTED', 'APPLIED', 'IN_PROGRESS', 'REJECTED'],
         default: 'APPLIED'
     }
 });
