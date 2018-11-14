@@ -4,6 +4,7 @@ let mongoose = require('mongoose');
 Model is a class with which we construct documents (jobs)
 */
 let Job = mongoose.model('Job');
+let Activity = mongoose.model('Activity');
 
 //GET
 exports.getAllJobs = (req, res) => {
@@ -57,4 +58,44 @@ exports.deleteJob = (req, res) => {
         res.send(`Job Id ${req.params.jobId} succesfully deleted`)
     });
 };
+
+exports.deleteActivity = (req, res) => {
+    Job.findById(req.params.jobId, (err, job) => {
+        if (err)
+            res.send(err);
+        
+        if (job){
+            let activity = job.activity_log.id(req.params.activityId);
+            activity.remove();
+
+            job.save((err) => {
+                if (err)
+                    res.send(error);
+            })
+        }
+
+        res.send(job);
+    });
+
+}
+
+exports.updateActivity = (req, res) => {
+    Job.findById(req.params.jobId, (err, job) => {
+        if (err)
+            res.send(err);
+        
+        if (job){
+            let activity = job.activity_log.id(req.params.activityId);
+            activity.set(req.body);
+
+            job.save((err) => {
+                if (err)
+                    res.send(error);
+            })
+        }
+
+        res.send(job);
+    });
+
+}
 
