@@ -7,7 +7,7 @@ let Schema = mongoose.Schema;
 let ActivitySchema = new Schema({
     activity_type: {
         type: String,
-        enum: ['EMAIL', 'PHONE_CALL', 'PHONE_INTERVIEW', 'ONSITE_INTERVIEW']
+        enum: ['EMAIL_RECEIVED', 'PHONE_CALL', 'PHONE_INTERVIEW', 'ONSITE_INTERVIEW', 'OFFER', 'FOLLOWED_UP']
     },
 
     date: {
@@ -37,7 +37,6 @@ let JobSchema = new Schema({
     
     applied_date: {
         type: Date,
-        default: Date.now()
     },
 
     skills: {
@@ -49,7 +48,7 @@ let JobSchema = new Schema({
         default: ''
     },
 
-    link: {
+    url: {
         type: String
     },
 
