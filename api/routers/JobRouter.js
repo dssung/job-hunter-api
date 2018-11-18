@@ -11,8 +11,4 @@ router.route('/jobs/:jobId')
     .put(jobHandler.updateJob)
     .delete(jobHandler.deleteJob);
 
-router.route('/jobs/:jobId/activity/:activityId')
-    .put(jobHandler.updateActivity)
-    .delete(jobHandler.deleteActivity);
-
 module.exports = router;

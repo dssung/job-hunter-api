@@ -4,7 +4,7 @@ let Schema = mongoose.Schema;
 //Schema maps to a MongoDB collection
 //Defines shape of documents within that collection
 
-let ActivitySchema = new Schema({
+let activitySchema = new Schema({
     activity_type: {
         type: String,
         enum: ['EMAIL_RECEIVED', 'PHONE_CALL', 'PHONE_INTERVIEW', 'ONSITE_INTERVIEW', 'OFFER', 'FOLLOWED_UP']
@@ -57,7 +57,7 @@ let JobSchema = new Schema({
         default: Date.now()
     },
 
-    activity_log: [ActivitySchema],
+    activity_log: [activitySchema],
 
     status: {
         type: String,
@@ -67,4 +67,3 @@ let JobSchema = new Schema({
 });
 
 module.exports = mongoose.model('Job', JobSchema);
-module.exports = mongoose.model('Activity', ActivitySchema);
