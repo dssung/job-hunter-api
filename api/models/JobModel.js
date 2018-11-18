@@ -66,5 +66,9 @@ let JobSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Job', JobSchema);
-module.exports = mongoose.model('Activity', ActivitySchema);
+
+
+module.exports = {
+    JobSchema: JobSchema,
+    ActivitySchema: ActivitySchema
+} 

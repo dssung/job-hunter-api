@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Job = require('./api/models/JobModel');
 const bodyParser = require('body-parser');
 const config = require('config');
 const cors = require('cors');
@@ -11,8 +10,13 @@ let options = {
     useFindAndModify: false 
   };
 
+//Models
+const Job = require('./api/models/JobModel');
+const User = require('./api/models/UserModel');
+
 //Routers
 let jobRouter = require('./api/routers/JobRouter');
+let userRouter = require('./api/routers/UserRouter');
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -37,6 +41,7 @@ app.use(bodyParser.json());
 
 //Load Routers
 app.use(jobRouter);
+app.use(userRouter);
 
 /*404 Handler Middleware
 app.use((req, res) => {
