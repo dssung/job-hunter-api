@@ -13,6 +13,7 @@ let options = {
 
 //Routers
 let jobRouter = require('./api/routers/JobRouter');
+let indeedRouter = require('./api/routers/IndeedRouter');
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -37,6 +38,7 @@ app.use(bodyParser.json());
 
 //Load Routers
 app.use(jobRouter);
+app.use(indeedRouter);
 
 /*404 Handler Middleware
 app.use((req, res) => {
