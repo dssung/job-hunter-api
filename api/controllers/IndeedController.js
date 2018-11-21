@@ -7,13 +7,14 @@ exports.getJobs = (req, res) => {
                 format: 'json',
                 userip: req.ip,
                 useragent: req.get('user-agent'),
+                highlight: 0,
                 q: req.query.q,
                 l: req.query.l,
                 sort: req.query.sort,
                 radius: req.query.radius,
                 fromage: req.query.fromage,
-                highlight: 0,
-                limit: 8
+                start: req.query.start,
+                limit: 8,
             }
         })
 

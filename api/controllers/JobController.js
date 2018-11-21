@@ -58,3 +58,42 @@ exports.deleteJob = (req, res) => {
     });
 };
 
+exports.deleteActivity = (req, res) => {
+    Job.findById(req.params.jobId, (err, job) => {
+        if (err)
+            res.send(err);
+        
+        if (job){
+            let activity = job.activity_log.id(req.params.activityId);
+            activity.remove();
+
+            job.save((err) => {
+                if (err)
+                    res.send(error);
+            })
+        }
+
+        res.send(job);
+    });
+
+}
+
+exports.updateActivity = (req, res) => {
+    Job.findById(req.params.jobId, (err, job) => {
+        if (err)
+            res.send(err);
+        
+        if (job){
+            let activity = job.activity_log.id(req.params.activityId);
+            activity.set(req.body);
+
+            job.save((err) => {
+                if (err)
+                    res.send(error);
+            })
+        }
+
+        res.send(job);
+    });
+}
+
