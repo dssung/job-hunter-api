@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha --timeout 10000",
-    "start": "NODE_ENV=dev && nodemon server.js"
+    "dev": "NODE_ENV=dev && nodemon server.js",
+    "start": "node server.js"
   },
   "author": "Daniel Sung",
   "license": "ISC",
