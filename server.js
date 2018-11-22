@@ -21,7 +21,12 @@ const port = process.env.PORT || 8000;
 app.use(cors());
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.DBHost, options);
+
+if (process.env.MONGODB_URI){
+    mongoose.MongoClient.connect(process.env.MONGODB_URI);
+} else {
+    mongoose.connect(config.DBHost, options);
+}
 
 if (config.util.getEnv('NODE_ENV') === 'test') {
    console.log('In test environment');
@@ -31,9 +36,9 @@ if (config.util.getEnv('NODE_ENV') === 'test') {
 
 //body-parser
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ type: 'application/json'}));
 //app.use(bodyParser.text());
-//app.use(bodyParser.json({ type: 'application/json'}));
+
 
 
 //Load Routers
