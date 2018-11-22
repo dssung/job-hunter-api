@@ -16,14 +16,13 @@ let jobRouter = require('./api/routers/JobRouter');
 let indeedRouter = require('./api/routers/IndeedRouter');
 
 const app = express();
-const port = process.env.PORT || 8000;
 
 app.use(cors());
 
 mongoose.Promise = global.Promise;
 
 if (process.env.MONGODB_URI){
-    mongoose.MongoClient.connect(process.env.MONGODB_URI);
+    mongoose.connect(process.env.MONGODB_URI);
 } else {
     mongoose.connect(config.DBHost, options);
 }
@@ -49,6 +48,9 @@ app.use(indeedRouter);
 app.use((req, res) => {
     res.status(404).send({url: req.originalUrl + ' not found'});
 });*/
+
+const port = process.env.PORT || 8000;
+
 
 app.listen(port, () => {
     console.log('App running on ' + port);
